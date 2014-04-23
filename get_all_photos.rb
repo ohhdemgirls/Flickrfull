@@ -11,7 +11,7 @@ pageCount=0
 
 # Prompt for username and set up file system
 
-username = ask "Please enter your username: "
+username = ask "Please enter a username: "
 baseDirectory = Dir.new(Dir.pwd)
 Dir.mkdir("#{username}") unless File.exists?("#{username}")
 
