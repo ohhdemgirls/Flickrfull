@@ -13,7 +13,7 @@ pageCount=0
 
 username = ask "Please enter your username: "
 baseDirectory = Dir.new(Dir.pwd)
-Dir.mkdir("images") unless File.exists?("images")
+Dir.mkdir("#{username}") unless File.exists?("#{username}")
 
 puts "Loading Flickr page..."
 mainDoc = Nokogiri::HTML(open("https://www.flickr.com/photos/#{username}"))
@@ -35,7 +35,7 @@ photoIds.each do |myPhotoId|
 	imgDoc = Nokogiri::HTML(open("https://www.flickr.com/photos/#{username}/#{myPhotoId}/sizes/o/in/photostream/"))
 	imgDoc.xpath("//div[@id='allsizes-photo']/img/@src").each do |link|
 		open(link) do |full_size_image|
-		  	File.open("images/#{myPhotoId}.jpg","wb") do |file|
+		  	File.open("#{username}/#{myPhotoId}.jpg","wb") do |file|
 		     	file.puts full_size_image.read
 		   	end
 		end
